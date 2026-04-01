@@ -43,3 +43,11 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Environment / secrets
+.env
+lib/core/config/env.g.dart
+
+# Generated files (tracked selectively — uncomment if you prefer to commit them)
+# *.g.dart
+# *.freezed.dart

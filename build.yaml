@@ -1,0 +1,11 @@
+targets:
+  $default:
+    builders:
+      hive_generator:
+        options:
+          use_null_safety_types: true
+      source_gen:
+        options:
+          build_extensions:
+            ".dart":
+              - ".g.dart"
