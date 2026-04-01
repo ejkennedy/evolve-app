@@ -28,7 +28,7 @@ class AppTheme {
         displayColor: AppColors.onSurface,
       ),
       scaffoldBackgroundColor: AppColors.surface,
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.surfaceVariant,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -171,7 +171,7 @@ class AppTheme {
         displayColor: AppColors.onSurfaceLight,
       ),
       scaffoldBackgroundColor: AppColors.surfaceLight,
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: Colors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(

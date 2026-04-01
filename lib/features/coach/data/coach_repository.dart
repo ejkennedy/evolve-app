@@ -7,7 +7,6 @@ import 'package:uuid/uuid.dart';
 
 import '../../../core/config/app_config.dart';
 import '../../../core/di/providers.dart';
-import '../../../core/network/api_endpoints.dart';
 import '../../auth/presentation/providers/auth_provider.dart';
 import '../../goals/data/models/goal.dart';
 import '../../habits/data/models/habit.dart';

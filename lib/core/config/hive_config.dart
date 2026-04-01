@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-/// Hive configuration. We store all models as JSON strings in Box<String>
+/// Hive configuration. We store all models as JSON strings in Box of String
 /// so we don't need hive_generator or TypeAdapters.
 /// Serialisation/deserialisation is done via Freezed's fromJson/toJson.
 class HiveConfig {

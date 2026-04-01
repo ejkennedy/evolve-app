@@ -7,6 +7,7 @@ import '../../../../core/extensions/context_ext.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../core/theme/app_spacing.dart';
 import '../../../auth/data/models/app_user.dart';
+import '../../../../core/di/providers.dart';
 import '../../../auth/presentation/providers/auth_provider.dart';
 
 const _onboardingScript = [
