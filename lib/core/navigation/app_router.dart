@@ -23,12 +23,14 @@ import '../constants/route_constants.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final authState = ref.watch(authStateProvider);
+  final onboardingComplete = ref.watch(onboardingCompleteProvider);
 
   return GoRouter(
     initialLocation: RouteConstants.splash,
     redirect: (context, state) {
       final isAuthenticated = authState.valueOrNull?.isAuthenticated ?? false;
-      final isOnboarded = authState.valueOrNull?.isOnboarded ?? false;
+      final isOnboarded =
+          (authState.valueOrNull?.isOnboarded ?? false) || onboardingComplete;
 
       final onAuthScreens = state.matchedLocation == RouteConstants.login ||
           state.matchedLocation == RouteConstants.signup ||

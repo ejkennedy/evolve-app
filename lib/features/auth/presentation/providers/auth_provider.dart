@@ -96,3 +96,7 @@ final authNotifierProvider =
     ref.watch(userBoxProvider),
   );
 });
+
+/// Immediately set to true after onboarding completes so the router redirect
+/// sees isOnboarded=true before the Supabase stream re-emits.
+final onboardingCompleteProvider = StateProvider<bool>((ref) => false);

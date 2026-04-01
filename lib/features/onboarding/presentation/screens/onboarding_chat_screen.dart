@@ -116,6 +116,9 @@ class _OnboardingChatScreenState extends ConsumerState<OnboardingChatScreen> {
     );
 
     await ref.read(authNotifierProvider.notifier).saveUser(user);
+    // Set the override so the router redirect sees isOnboarded=true immediately,
+    // before the Supabase stream re-emits with the updated Hive data.
+    ref.read(onboardingCompleteProvider.notifier).state = true;
     if (mounted) context.go(RouteConstants.dashboard);
   }
 
