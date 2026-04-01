@@ -31,7 +31,7 @@ Most habit trackers are static — you log data, see a graph, done. **Evolve** a
 | State | Riverpod 2.x |
 | Local Storage | Hive (offline-first) |
 | Auth & DB | Supabase |
-| AI Coach | Anthropic Claude API (streaming) |
+| AI Coach | OpenAI API – GPT-4o (streaming) |
 | Navigation | GoRouter |
 | Networking | Dio |
 | Charts | fl_chart |

@@ -6,8 +6,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 class Env {
   Env._();
 
-  static String get anthropicApiKey =>
-      dotenv.env['ANTHROPIC_API_KEY'] ?? '';
+  static String get openAiApiKey =>
+      dotenv.env['OPENAI_API_KEY'] ?? '';
 
   static String get supabaseUrl =>
       dotenv.env['SUPABASE_URL'] ?? '';

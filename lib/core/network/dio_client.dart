@@ -6,12 +6,11 @@ import '../constants/app_constants.dart';
 Dio createAnthropicDio() {
   final dio = Dio(
     BaseOptions(
-      baseUrl: AppConfig.anthropicBaseUrl,
+      baseUrl: AppConfig.openAiBaseUrl,
       connectTimeout: AppConstants.networkTimeout,
       receiveTimeout: AppConstants.streamTimeout,
       headers: {
-        'x-api-key': Env.anthropicApiKey,
-        'anthropic-version': '2023-06-01',
+        'Authorization': 'Bearer ${Env.openAiApiKey}',
         'content-type': 'application/json',
       },
     ),

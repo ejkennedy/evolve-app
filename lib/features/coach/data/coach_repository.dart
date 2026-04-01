@@ -33,26 +33,28 @@ class CoachRepository {
     );
   }
 
-  /// Streams a response from Claude given the conversation history.
+  /// Streams a response from OpenAI given the conversation history.
   Stream<String> streamResponse({
     required List<ChatMessage> messages,
     required String systemPrompt,
   }) async* {
-    final apiMessages = messages
-        .where((m) => m.role != ChatRole.system)
-        .map((m) => {
-              'role': m.role == ChatRole.user ? 'user' : 'assistant',
-              'content': m.content,
-            })
-        .toList();
+    // OpenAI: system prompt is the first message with role "system"
+    final apiMessages = [
+      {'role': 'system', 'content': systemPrompt},
+      ...messages
+          .where((m) => m.role != ChatRole.system)
+          .map((m) => {
+                'role': m.role == ChatRole.user ? 'user' : 'assistant',
+                'content': m.content,
+              }),
+    ];
 
     final response = await _dio.post(
-      ApiEndpoints.messages,
+      '/chat/completions',
       options: Options(responseType: ResponseType.stream),
       data: {
-        'model': AppConfig.anthropicModel,
+        'model': AppConfig.openAiModel,
         'max_tokens': AppConfig.coachMaxTokens,
-        'system': systemPrompt,
         'stream': true,
         'messages': apiMessages,
       },
@@ -73,10 +75,14 @@ class CoachRepository {
           if (data == '[DONE]') return;
           try {
             final json = jsonDecode(data) as Map<String, dynamic>;
-            if (json['type'] == 'content_block_delta') {
-              final delta = json['delta'] as Map<String, dynamic>?;
-              if (delta?['type'] == 'text_delta') {
-                yield delta!['text'] as String;
+            // OpenAI: choices[0].delta.content
+            final choices = json['choices'] as List<dynamic>?;
+            if (choices != null && choices.isNotEmpty) {
+              final delta =
+                  choices[0]['delta'] as Map<String, dynamic>?;
+              final content = delta?['content'] as String?;
+              if (content != null && content.isNotEmpty) {
+                yield content;
               }
             }
           } catch (_) {
