@@ -6,11 +6,25 @@ import '../../../../core/constants/route_constants.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../providers/auth_provider.dart';
 
-class SplashScreen extends ConsumerWidget {
+class SplashScreen extends ConsumerStatefulWidget {
   const SplashScreen({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends ConsumerState<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    // Fallback: if the auth stream doesn't emit within 3 seconds, go to login
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) context.go(RouteConstants.login);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
     ref.listen(authStateProvider, (_, next) {
       next.whenData((status) {
         if (!status.isAuthenticated) {
